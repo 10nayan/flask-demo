@@ -1,8 +1,12 @@
+import os
 from flask import Flask, jsonify, request
+from dotenv import load_dotenv
 from models import db, User
 app = Flask(__name__)
 
-app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql://demo_user:Demo123@localhost:5432/demo"
+load_dotenv()
+
+app.config["SQLALCHEMY_DATABASE_URI"] = os.environ['DATABASE_URI']
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
 db.init_app(app)
